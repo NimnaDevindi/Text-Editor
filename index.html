@@ -126,23 +126,18 @@
         function undo() {
             if (historyIndex > 0) {
                 historyIndex--;
-                const prevState = history[historyIndex];
-                applyState(prevState);
+                textarea.innerHTML = history[historyIndex];
             }
         }
 
         function redo() {
             if (historyIndex < history.length - 1) {
                 historyIndex++;
-                const nextState = history[historyIndex];
-                applyState(nextState);
+                textarea.innerHTML = history[historyIndex];
             }
         }
 
-        function applyState(state) {
-            textarea.innerHTML = state;
-
-        }
+        textarea.addEventListener('input', saveState);
 
     </script>
 
