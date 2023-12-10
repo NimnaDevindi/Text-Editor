@@ -70,22 +70,22 @@
             <input type="color" id="color-picker-input" onchange="applystyles('foreColor', this.value)">
         </li>
         <li>
-            <button type="button">
+            <button type="button" onclick="applystyles('justifyLeft')">
                 <img src="./Resources/left.png" alt="align-left">
             </button>
         </li>
         <li>
-            <button type="button" >
+            <button type="button" onclick="applystyles('justifyCenter')" >
                 <img src="./Resources/center.png" alt="center">
             </button>
         </li>
         <li>
-            <button type="button" >
+            <button type="button" onclick="applystyles('justifyRight')" >
                 <img src="./Resources/right.png" alt="align-right">
             </button>
         </li>
         <li>
-            <button type="button" >
+            <button type="button" onclick="applystyles('justifyFull')" >
                 <img src="./Resources/justify.png" alt="align-justify">
             </button>
         </li>
@@ -107,7 +107,7 @@
 
 
         function applystyles(command, value = null) {
-
+            textarea.focus = true;
             document.execCommand(command, false, value);
         }
     </script>
