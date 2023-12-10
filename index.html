@@ -117,6 +117,7 @@
 
 
         function applystyles(command, value = null) {
+            saveState()
             textarea.focus = true;
             document.execCommand(command, false, value);
         }
