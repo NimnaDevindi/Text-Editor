@@ -90,12 +90,12 @@
             </button>
         </li>
         <li>
-            <button type="button" >
+            <button type="button" onclick="undo()">
                 <img src="./Resources/undo-4-32.png" alt="undo">
             </button>
         </li>
         <li>
-            <button type="button" >
+            <button type="button" onclick="redo()" >
                 <img src="./Resources/action-redo-32.png" alt="redo">
             </button>
         </li>
@@ -105,11 +105,44 @@
     <script type="text/javascript">
         let textarea = document.getElementById("textarea");
 
+        let history = [];
+        let historyIndex = -1;
+
+        function saveState() {
+           
+            history = history.slice(0, historyIndex + 1);
+            history.push(textarea.innerHTML);
+            historyIndex++;
+        }
+
 
         function applystyles(command, value = null) {
             textarea.focus = true;
             document.execCommand(command, false, value);
         }
+  
+
+        function undo() {
+            if (historyIndex > 0) {
+                historyIndex--;
+                const prevState = history[historyIndex];
+                applyState(prevState);
+            }
+        }
+
+        function redo() {
+            if (historyIndex < history.length - 1) {
+                historyIndex++;
+                const nextState = history[historyIndex];
+                applyState(nextState);
+            }
+        }
+
+        function applyState(state) {
+            textarea.innerHTML = state;
+
+        }
+
     </script>
 
    
